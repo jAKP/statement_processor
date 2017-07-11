@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.0">
+<title>Rabobank Customer Statement Processor</title>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic|Noto+Serif:400,400italic,700,700italic|Droid+Sans+Mono:400">
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css/sample.css" type="text/css" />
+
+<script type="text/javascript" src="lib/angular.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="functions.js"></script>
+<script type="text/javascript" src="lib/xml2string.js"></script>
+<style>
+</style>
+</head>
+<body ng-app="statmentApp" ng-controller="statementCtrl">
+	<div id="header">
+		<h1>Rabobank Customer Statement Processor</h1>
+	</div>
+	<br><br><br>
+	<button ng-click="trigger_calc()">
+		<strong>Process Statement Files</strong>
+	</button>
+	<br><br><br>
+	
+	<div id="divCsv">
+		<table ng-if="csv_items"  class="tableblock frame-all grid-all spread">
+			<caption class="title">Statement Data (CSV)</caption>
+			<colgroup>
+				<col style="width: 10%;">
+				<col style="width: 20%;">
+				<col style="width: 30%;">
+				<col style="width: 10%;">
+				<col style="width: 10%;">
+				<col style="width: 10%;">
+			</colgroup>
+
+			<tr ng-repeat="x in csv_items">
+				<td class="tableblock halign-left valign-top" ng-repeat="y in x"><p
+						class="tableblock">{{ y }}</p></td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<table ng-if="csv_errors" class="tableblock frame-all grid-all spread">
+			<caption class="title">Erroneous Data (CSV)</caption>
+			<colgroup>
+				<col style="width: 10%;">
+				<col style="width: 20%;">
+				<col style="width: 30%;">
+				<col style="width: 10%;">
+				<col style="width: 10%;">
+				<col style="width: 10%;">
+			</colgroup>
+
+			<tr ng-repeat="x in csv_errors">
+				<td class="tableblock halign-left valign-top" ng-repeat="y in x"><p
+						class="tableblock">{{ y }}</p></td>
+			</tr>
+		</table>
+	</div>
+	<div id="divXml">
+		<table ng-if="xml_items" class="tableblock frame-all grid-all spread">
+			<caption class="title">Statement Data (XML)</caption>
+			<colgroup>
+				<col style="width: 10%;">
+				<col style="width: 20%;">
+				<col style="width: 30%;">
+				<col style="width: 10%;">
+				<col style="width: 10%;">
+				<col style="width: 10%;">
+			</colgroup>
+			<tr ng-repeat="x in xml_items">
+				<td class="tableblock halign-left valign-top" ng-repeat="y in x"><p
+						class="tableblock">{{ y }}</p></td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<table ng-if="xml_errors" class="tableblock frame-all grid-all spread">
+			<caption class="title">Erroneous Data (XML)</caption>
+			<colgroup>
+				<col style="width: 10%;">
+				<col style="width: 20%;">
+				<col style="width: 30%;">
+				<col style="width: 10%;">
+				<col style="width: 10%;">
+				<col style="width: 10%;">
+			</colgroup>
+			<tr ng-repeat="x in xml_errors">
+				<td class="tableblock halign-left valign-top" ng-repeat="y in x"><p
+						class="tableblock">{{ y }}</p></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
